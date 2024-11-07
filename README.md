@@ -25,7 +25,8 @@ This project implements a parallel version of the k-Nearest Neighbors (k-NN) alg
     ```
 
 ### Running the Program
-After building the project, you can run the executable:
+After building the project, you have to link the dynamic libraries and then you can run the executable:
 ```sh
+export LD_LIBRARY_PATH=/usr/local/MATLAB/R2024b/bin/glnxa64:$LD_LIBRARY_PATH
 ./build/parallel_knn <corpus_file> <query_file> <k>
 ```
