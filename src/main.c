@@ -1,5 +1,6 @@
 #include <errno.h>   // for errno
 #include <limits.h>  // for INT_MAX
+#include <stdlib.h>
 #include <stdio.h>
 #include "knn.h"
 #include "mat_io.h"
@@ -7,8 +8,6 @@
 
 int main(int argc, char** argv)
 {
-
-    setenv("LD_LIBRARY_PATH", "/usr/local/MATLAB/R2024b/bin/glnxa64", 1);
 
     // Check for correct number of arguments
     if (argc != 4)
@@ -59,11 +58,11 @@ int main(int argc, char** argv)
     }
 
     // // Allocate memory for k-nearest neighbor results
-    // int* idx = (int*)malloc(query_n * k * sizeof(int));
-    // double* dst = (double*)malloc(query_n * k * sizeof(double));
+    // int_matrix_t *idx = create_int dir(query->rows, k);
+    // double_matrix_t *dst = create_double_array(query->rows * k);
 
     // // Call KNN search function
-    // knn_search(corpus, query, d, query_n, k, idx, dst);
+    // knn_search(corpus, query, k, idx, dst);
 
     // // Output results to .mat file
     // write_mat_file("knn_results.mat", idx, dst, query_n, k);
@@ -71,8 +70,8 @@ int main(int argc, char** argv)
     // Free allocated memory
     free_double_matrix(corpus);
     free_double_matrix(query);
-    // free(idx);
-    // free(dst);
+    // free_int_matrix(idx);
+    // free_double_matrix(dst);
 
     return 0;
 }

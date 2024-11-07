@@ -1,7 +1,7 @@
 # Compiler
 CC = gcc
 
-# export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/MATLAB/R2024b/bin/glnxa64:$LD_LIBRARY_PATH
 
 # Paths
 SRC_DIR = src
@@ -12,14 +12,13 @@ MATLAB_ROOT = /usr/local/MATLAB/R2024b# Update this with your actual MATLAB path
 # Compiler and Linker flags
 CFLAGS = -I$(INC_DIR) -I$(MATLAB_ROOT)/extern/include -Wall -O2
 LDFLAGS = -L/usr/lib/x86_64-linux-gnu -lstdc++ -lm -lopenblas -L$(MATLAB_ROOT)/bin/glnxa64 -lmat -lmx
-# LDFLAGS = -L$(MATLAB_ROOT)/bin/glnxa64 -lmat -lmx -lopenblas -lm
 
 # Source files and corresponding object files in the build directory
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 # Executable name
-TARGET = $(BUILD_DIR)/knn_serial
+TARGET = $(BUILD_DIR)/parallel_knn
 
 # Default target
 all: $(TARGET)
@@ -39,3 +38,4 @@ $(BUILD_DIR):
 # Clean up build artifacts
 clean:
 	rm -rf $(BUILD_DIR)
+
